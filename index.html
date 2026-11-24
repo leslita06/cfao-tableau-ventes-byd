@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Ventes BYD : devis, relances et clients perdus, CFAO Mobility Côte d'Ivoire</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/base.css?v=20261124b">
+<link rel="stylesheet" href="assets/ventes.css?v=20261124b">
+</head>
+<body>
+<div class="fictif">Données fictives. Aucun chiffre de CFAO Mobility n'a été utilisé. Modèles BYD réels, prix indicatifs.</div>
+<header class="top">
+  <div class="wrap top-in">
+    <div class="logos">
+      <img src="assets/logo-cfao.png?v=20261124b" alt="CFAO Mobility" class="logo">
+      <span class="sep" aria-hidden="true"></span>
+      <img src="assets/logo-byd.png?v=20261124b" alt="BYD" class="logo-byd">
+    </div>
+    <div class="titre">
+      <h1>Ventes BYD : devis, relances, clients perdus</h1>
+      <p>Du devis envoyé au véhicule signé, 4 conseillers BYD, 3 sites</p>
+    </div>
+    <div class="pret"><span class="pastille-ok"></span><span id="maj">À jour</span></div>
+  </div>
+</header>
+
+<nav class="onglets" aria-label="Rubriques">
+  <div class="wrap onglets-in" id="onglets">
+    <button class="tab on" data-t="jour"><span class="tab-ico" data-i="soleil"></span><span class="lg">Rapport du jour</span><span class="ct">Du jour</span></button>
+    <button class="tab" data-t="devis"><span class="tab-ico" data-i="devis"></span><span>Devis</span></button>
+    <button class="tab" data-t="perdus"><span class="tab-ico" data-i="perdu"></span><span class="lg">Clients perdus</span><span class="ct">Perdus</span></button>
+    <button class="tab" data-t="relances"><span class="tab-ico" data-i="relance"></span><span>Relances</span></button>
+    <button class="tab" data-t="ab"><span class="tab-ico" data-i="ab"></span><span class="lg">Tests de contenu</span><span class="ct">Tests</span></button>
+  </div>
+</nav>
+
+<section class="filtres">
+  <div class="wrap filtres-in">
+    <div class="ligne-f">
+      <div class="seg" id="f-periode" role="group" aria-label="Période">
+        <button data-v="1">Ce mois</button><button data-v="3" class="on">3 mois</button><button data-v="6">6 mois</button>
+      </div>
+      <button class="raz" id="raz">Tout effacer</button>
+    </div>
+    <div class="ligne-f defile">
+      <span class="lib">Modèle</span>
+      <div class="chips" id="f-modele"></div>
+    </div>
+    <div class="grille-sel">
+      <label><span class="lib">Site</span><select id="f-site"></select></label>
+      <label><span class="lib">Conseiller</span><select id="f-vendeur"></select></label>
+      <label><span class="lib">Canal du devis</span><select id="f-canal"></select></label>
+    </div>
+    <p class="lecture" id="lecture"></p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- RAPPORT DU JOUR -->
+  <div class="panneau on" id="p-jour">
+    <section class="kpis k4" id="k-jour"></section>
+    <section class="bloc">
+      <div class="bloc-tete"><h2 id="t-jour">À rappeler aujourd'hui</h2><span class="note">Classés du plus chaud au moins chaud</span></div>
+      <div id="liste-jour"></div>
+    </section>
+    <div class="grille-2">
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Clients perdus à rappeler</h2><span class="note">Avec le modèle à leur proposer</span></div>
+        <div id="jour-perdus"></div>
+      </section>
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Relances prêtes, à valider</h2><span class="note">Rien ne part sans validation</span></div>
+        <div id="jour-valider"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- DEVIS -->
+  <div class="panneau" id="p-devis">
+    <section class="kpis" id="k-devis"></section>
+    <section class="bloc alertes-bloc">
+      <div class="bloc-tete"><h2>Devis sans réponse depuis 3 jours ou plus</h2><span class="note" id="n-alertes"></span></div>
+      <div id="alertes-devis"></div>
+    </section>
+    <section class="bloc">
+      <div class="bloc-tete"><h2>Du devis envoyé à la signature</h2><span class="note">Devis envoyés sur la période</span></div>
+      <div class="ent" id="entonnoir"></div>
+    </section>
+    <div class="grille-2">
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Quel modèle fait réagir</h2><span class="note">Réponse et signature, par modèle</span></div>
+        <div id="par-modele"></div>
+        <div class="leg2"><span><i class="c-rep"></i>Taux de réponse</span><span><i class="c-sig"></i>Taux de transformation</span></div>
+      </section>
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Par canal du devis</h2><span class="note">D'où vient la demande</span></div>
+        <div id="par-canal"></div>
+        <div class="leg2"><span><i class="c-rep"></i>Taux de réponse</span><span><i class="c-sig"></i>Taux de transformation</span></div>
+      </section>
+    </div>
+    <section class="bloc">
+      <div class="bloc-tete"><h2>Par conseiller</h2><span class="note">Cliquer un nom filtre toute la page</span></div>
+      <div id="par-vendeur"></div>
+    </section>
+  </div>
+
+  <!-- CLIENTS PERDUS -->
+  <div class="panneau" id="p-perdus">
+    <section class="kpis" id="k-perdus"></section>
+    <div class="grille-2 g-65">
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Taux de perte sur 6 mois</h2><span class="note">Part des devis conclus qui sont perdus</span></div>
+        <div class="chart-h"><canvas id="c-perte"></canvas></div>
+      </section>
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Pourquoi on les perd</h2><span class="note" id="n-motifs"></span></div>
+        <div id="motifs"></div>
+      </section>
+    </div>
+    <section class="bloc">
+      <div class="bloc-tete"><h2>Clients à reconquérir</h2><span class="note">Le modèle à proposer dépend du motif de perte</span></div>
+      <div class="tri" id="tri-reconq"></div>
+      <div id="liste-reconq"></div>
+    </section>
+  </div>
+
+  <!-- RELANCES -->
+  <div class="panneau" id="p-relances">
+    <section class="kpis k4" id="k-relances"></section>
+    <div class="grille-2 g-rel">
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Clients relancés</h2><span class="note">Choisir un client pour voir sa frise</span></div>
+        <div class="tri" id="tri-rel"></div>
+        <div id="liste-rel" class="liste-rel"></div>
+      </section>
+      <section class="bloc" id="frise-bloc">
+        <div id="frise"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- TESTS A/B -->
+  <div class="panneau" id="p-ab">
+    <section class="ab-cartes" id="ab-cartes"></section>
+    <section class="bloc verdict" id="verdict"></section>
+    <div class="grille-2">
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Réponse et rendez-vous par contenu</h2><span class="note">Relances WhatsApp à 3 jours</span></div>
+        <div class="chart-h"><canvas id="c-ab"></canvas></div>
+      </section>
+      <section class="bloc">
+        <div class="bloc-tete"><h2>Taux de réponse par modèle et par contenu</h2><span class="note">Case vide : moins de 5 envois</span></div>
+        <div id="ab-modele"></div>
+      </section>
+    </div>
+    <section class="bloc">
+      <div class="bloc-tete"><h2>Comment le test est construit</h2></div>
+      <ul class="methode">
+        <li>À 3 jours sans réponse, chaque devis reçoit au hasard une relance WhatsApp avec l'un des trois contenus : une vidéo de 45 secondes du modèle, le catalogue en PDF, ou trois photos.</li>
+        <li>On compte une réponse quand le client écrit ou appelle dans les 4 jours, un rendez-vous quand un essai ou une visite est fixé.</li>
+        <li>Un écart n'est déclaré net que si le hasard a moins de 5 chances sur 100 de l'expliquer ; sinon le test continue.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer class="pied"><div class="wrap pied-in"><strong>Données fictives.</strong> Clients, devis, montants, messages et résultats sont inventés pour montrer le fonctionnement. Les modèles BYD sont ceux proposés en Côte d'Ivoire ; prix indicatifs non contractuels.</div></footer>
+
+<div class="modale" id="modale" hidden><div class="modale-in" role="dialog" aria-modal="true"><button class="fermer" id="fermer" aria-label="Fermer">×</button><div id="modale-c"></div></div></div>
+
+<script src="assets/chart.umd.min.js?v=20261124b"></script>
+<script src="data/donnees.js?v=20261124b"></script>
+<script src="assets/ventes.js?v=20261124b"></script>
+</body>
+</html>
